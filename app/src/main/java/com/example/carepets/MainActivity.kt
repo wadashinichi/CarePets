@@ -38,13 +38,13 @@ class MainActivity : AppCompatActivity() {
         res = PetRepository(application)
 
         var i: Intent = Intent()
-//        var count: Int = res.getCount()
+        var count: Int = res.getCount()
 //        if (count == 0) {
 //            i.setClass(this, )
 //        }
-//        i.setClass(this, TrackerActivity::class.java)
-//        startActivity(i)
-        replaceFragment(ListPetFragment())
+        i.setClass(this, TrackerActivity::class.java)
+        startActivity(i)
+//        replaceFragment(ListPetFragment())
     }
 
     private fun replaceFragment(fragment: Fragment) {

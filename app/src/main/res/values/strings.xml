@@ -29,4 +29,32 @@
     <string name="species">Species</string>
     <string name="submit">Submit</string>
 
+    // overview
+    <string name="weight">Weight</string>
+    <string name="length">Length</string>
+    <string name="heart">Heart Beat</string>
+    <string name="vaccination">Vaccination</string>
+    <string name="test">Medical Test</string>
+    <string name="height">Height</string>
+    <string name="title_activity_add_weight">AddWeightActivity</string>
+
+    // weight
+    <string name="weight_diagram">Diagram for times of measurement</string>
+<!--    <string name="weight">Weight</string>-->
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+
+    // reminder
+    <string name="rm_title_meal">Meal Reminders</string>
+    <string name="rm_title_walk">Walk Reminders</string>
+    <string name="rm_title_medical">Medication Reminders</string>
+    <string name="rm_switch_meal">Reminder to feed</string>
+    <string name="rm_switch_walk">Reminders for walking</string>
+    <string name="rm_switch_medical">Reminders to take daily Medication</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="lunch">Lunch</string>
+    <string name="dinner">Dinner</string>
+    <string name="snack">Snack</string>
+
+
 </resources>

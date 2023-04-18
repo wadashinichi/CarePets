@@ -5,10 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Pet::class], version = 1)
+@Database(entities = [Pet::class, PetWeight::class], version = 1)
 abstract class PetDatabase : RoomDatabase() {
 
     abstract fun petDao(): PetDao
+    abstract fun weightDao(): PetWeightDao
 
     companion object {
 

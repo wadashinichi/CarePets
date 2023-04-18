@@ -29,8 +29,8 @@ class ListPetFragment : Fragment() {
         binding = FragmentListPetBinding.inflate(layoutInflater)
         res = PetRepository(requireActivity().application)
 
-//        var plist: List<Pet> = res.getAll()
-//        displayList(plist)
+        var plist: List<Pet> = res.getAll()
+        displayList(plist)
 
         binding.btnAdd.setOnClickListener {
             var i: Intent = Intent()

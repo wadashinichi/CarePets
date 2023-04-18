@@ -1,17 +1,23 @@
 package com.example.carepets.sourceport.petadd
 
 import android.app.DatePickerDialog
+import android.app.blob.BlobHandle
+import android.app.blob.BlobStoreManager
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.icu.util.Calendar
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
-import com.example.carepets.R
+import com.example.carepets.database.Pet
 import com.example.carepets.database.PetRepository
 import com.example.carepets.databinding.ActivityAddPetBinding
 import com.example.carepets.mainfunction.TrackerActivity
+import java.io.ByteArrayOutputStream
+import java.sql.Blob
 
 class AddPetActivity : AppCompatActivity() {
 
@@ -23,18 +29,24 @@ class AddPetActivity : AppCompatActivity() {
         setContentView(binding.root)
         res = PetRepository(application)
 
+        var name: String = ""
+        var birth: String = ""
+        var species: String = ""
+        var img: Blob? = null
         binding.btnPickImg.setOnClickListener {
             pickImg()
         }
-        var name = binding.editName.text.toString()
-        var species = binding.editSpecies.text.toString()
-        var birth: String = ""
+
 
         binding.editBirth.setOnClickListener {view: View ->
             birth = takeDate(view)
         }
         binding.btnSubmit.setOnClickListener {
-
+            name = binding.editName.text.toString()
+            species = binding.editSpecies.text.toString()
+            img = decodeImg() as Blob
+            var pet: Pet = Pet(null, name, img, birth, species)
+            res.insert(pet)
         }
 
     }
@@ -66,6 +78,13 @@ class AddPetActivity : AppCompatActivity() {
 //                bmp = BitmapFactory.decodeStream(inputStream)
 //            }
         }
+    }
+    fun decodeImg(): ByteArray {
+        var bitmapDrawable: BitmapDrawable = binding.imgPet.drawable as BitmapDrawable
+        var bm: Bitmap = bitmapDrawable.bitmap
+        var byteArr: ByteArrayOutputStream = ByteArrayOutputStream()
+        bm.compress(Bitmap.CompressFormat.PNG, 100, byteArr)
+        return byteArr.toByteArray()
     }
     fun reDirect() {
         var i: Intent = Intent()
