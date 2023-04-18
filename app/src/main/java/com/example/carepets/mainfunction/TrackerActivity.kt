@@ -20,7 +20,7 @@ import com.google.android.material.navigation.NavigationView
 /*dieu phoi cac fragment*/
 //contant_frame: frameLayout -> viewpager
 
-class TrackerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
+class TrackerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityTrackerBinding
     override fun onCreate(savedInstanceState: Bundle?) {

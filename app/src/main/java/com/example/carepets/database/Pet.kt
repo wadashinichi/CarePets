@@ -14,7 +14,7 @@ data class Pet(
     var name: String = "",
 
     @ColumnInfo(name = "pet_img")
-    var img: Blob?,
+    var img: Int,
 
     @ColumnInfo(name = "pet_birth")
     var birth: String = "",

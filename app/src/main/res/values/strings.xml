@@ -13,5 +13,20 @@
  Vietnam - Korea University Of Information And Communication Technology</string>
     <string name="app_features">Care Pets is the mobile application that show you how to take care of your pets in the best way, and help help you manage routine job about Pets</string>
 
+    // pet list
+    <string name="plus">+</string>
+    <string name="title_activity_main_component">MainComponentActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="tab_text_1">Overview</string>
+    <string name="tab_text_2">Vaccination</string>
+    <string name="tab_text_3">Note</string>
+
+    // pet infor
+    <string name="name">Name</string>
+    <string name="birth">Birth</string>
+    <string name="species">Species</string>
+    <string name="submit">Submit</string>
 
 </resources>
