@@ -7,4 +7,11 @@
     <string name="drawer_open">Open drawer</string>
     <string name="drawer_close">Close drawer</string>
 
+    // about us
+    <string name="app_developer">Nguyen Thi Tieu Tien
+ 21GIT
+ Vietnam - Korea University Of Information And Communication Technology</string>
+    <string name="app_features">Care Pets is the mobile application that show you how to take care of your pets in the best way, and help help you manage routine job about Pets</string>
+
+
 </resources>
