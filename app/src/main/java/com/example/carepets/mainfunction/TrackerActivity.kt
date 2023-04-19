@@ -25,7 +25,7 @@ import com.google.android.material.navigation.NavigationView
 class TrackerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityTrackerBinding
-    public var id: Int = 0
+    private var id: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTrackerBinding.inflate(layoutInflater)

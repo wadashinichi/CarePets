@@ -10,5 +10,6 @@ class PetWeightRepository(var application: Application) {
 
     fun insert(weight: PetWeight) = db.weightDao().insertWeight(weight)
     fun getAll(): List<PetWeight> = db.weightDao().getAll()
+    fun getWeightById(id: Int): List<PetWeight> = db.weightDao().getWeightById(id)
 
 }

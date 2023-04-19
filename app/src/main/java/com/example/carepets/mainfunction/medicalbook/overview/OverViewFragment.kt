@@ -15,12 +15,16 @@ import com.example.carepets.mainfunction.medicalbook.overview.weight.WeightDiagr
 class OverViewFragment : Fragment() {
 
     lateinit var binding: FragmentOverViewBinding
+    lateinit var trackerActivity: TrackerActivity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentOverViewBinding.inflate(layoutInflater)
+        trackerActivity = activity as TrackerActivity
+        var id = trackerActivity.getPetId()
+
         binding.cardView1.setOnClickListener {
             val i: Intent = Intent(requireContext(), WeightDiagramActivity::class.java)
             i.putExtra("petId", id)

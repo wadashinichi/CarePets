@@ -17,4 +17,7 @@ interface PetWeightDao {
     @Query("SELECT * FROM weight_table")
     fun getAll(): List<PetWeight>
 
+    @Query("SELECT * FROM weight_table WHERE pet_id = :id")
+    fun getWeightById(id: Int): List<PetWeight>
+
 }
