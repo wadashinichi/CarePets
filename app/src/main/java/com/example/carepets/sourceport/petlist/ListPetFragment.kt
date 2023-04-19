@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.carepets.MainActivity
 import com.example.carepets.R
 import com.example.carepets.database.Pet
@@ -42,9 +44,11 @@ class ListPetFragment : Fragment() {
     }
 
     fun displayList(plist: List<Pet>) {
-        val adapter = PetListAdapter(plist)
+        val adapter = PetListAdapter(plist, requireContext())
         binding.rvPetList.adapter = adapter
-        binding.rvPetList.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+        binding.rvPetList.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, true)
+        var decorate: RecyclerView.ItemDecoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
+        binding.rvPetList.addItemDecoration(decorate)
     }
 
 }

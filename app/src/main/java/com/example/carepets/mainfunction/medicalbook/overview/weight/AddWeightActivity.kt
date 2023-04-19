@@ -25,10 +25,11 @@ class AddWeightActivity : AppCompatActivity() {
         setContentView(binding.root)
         res = PetWeightRepository(application)
 
-//        var id: Int
+        val intent: Intent = intent
+        var id: Int = intent.getIntExtra("petId", 1)
         var date: String = ""
         var time: String = ""
-        var weight: Float = 0F
+        var result: Float = 0F
         binding.editDate.setOnClickListener {view: View ->
             date = takeDate(view)
         }
@@ -36,9 +37,9 @@ class AddWeightActivity : AppCompatActivity() {
             time = takeTime(view)
         }
         binding.btnSubmit.setOnClickListener {
-            weight = binding.editWeight.text.toString().toFloat()
-//            var weight: PetWeight(null, )
-//            res.insert()
+            result = binding.editWeight.text.toString().toFloat()
+            var weight: PetWeight = PetWeight(null, id, date, time, result)
+            res.insert(weight)
             var i: Intent = Intent()
             i.setClass(this, WeightDiagramActivity::class.java)
             startActivity(i)

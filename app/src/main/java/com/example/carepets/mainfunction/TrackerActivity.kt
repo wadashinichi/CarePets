@@ -1,5 +1,6 @@
 package com.example.carepets.mainfunction
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -13,6 +14,7 @@ import com.example.carepets.mainfunction.home.HomeFragment
 import com.example.carepets.mainfunction.medicalbook.MedicalBookFragment
 import com.example.carepets.mainfunction.reminder.ReminderFragment
 import com.example.carepets.sourceport.aboutus.AboutFragment
+import com.example.carepets.sourceport.petlist.ListPetActivity
 import com.example.carepets.sourceport.petlist.ListPetFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -23,12 +25,21 @@ import com.google.android.material.navigation.NavigationView
 class TrackerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityTrackerBinding
+    public var id: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTrackerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        NavigationUI.setupWithNavController(binding.navView, navController)
+//        var i: Intent = intent
+//        var bundle: Bundle? = i.getBundleExtra("bundle")
+//        if (bundle != null) {
+//            id = bundle.getInt("id")
+//        }
+//        id = i.getIntExtra("id", 1)
+
+        var i: Intent = intent
+        id = i.getIntExtra("petId", 1)
 
         setSupportActionBar(binding.toolBar)
         var toggle = ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolBar, R.string.drawer_open, R.string.drawer_close)
@@ -94,7 +105,12 @@ class TrackerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         var id: Int = item.itemId
 //         xu ly khi la chinh no
         when (id) {
-            R.id.listPetFragment -> replaceFragment(ListPetFragment())
+            R.id.listPetFragment -> {
+//                replaceFragment(ListPetFragment())
+                var i: Intent = Intent()
+                i.setClass(this, ListPetActivity::class.java)
+                startActivity(i)
+            }
             R.id.aboutFragment -> replaceFragment(AboutFragment())
         }
         binding.navigationView.setCheckedItem(id)
@@ -125,5 +141,8 @@ class TrackerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         if (supportActionBar != null) {
             supportActionBar!!.title = title
         }
+    }
+    fun getPetId(): Int {
+        return id
     }
 }

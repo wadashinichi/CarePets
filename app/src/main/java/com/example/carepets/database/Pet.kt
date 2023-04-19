@@ -3,6 +3,7 @@ package com.example.carepets.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 import java.sql.Blob
 
 @Entity(tableName = "pet_table")
@@ -21,4 +22,4 @@ data class Pet(
 
     @ColumnInfo(name = "pet_species")
     var species: String = ""
-)
+) : Serializable

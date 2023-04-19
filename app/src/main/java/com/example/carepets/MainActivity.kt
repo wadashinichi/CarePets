@@ -21,6 +21,7 @@ import com.example.carepets.mainfunction.home.HomeFragment
 import com.example.carepets.mainfunction.medicalbook.MedicalBookFragment
 import com.example.carepets.mainfunction.reminder.ReminderFragment
 import com.example.carepets.sourceport.aboutus.AboutFragment
+import com.example.carepets.sourceport.petlist.ListPetActivity
 import com.example.carepets.sourceport.petlist.ListPetFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 //        if (count == 0) {
 //            i.setClass(this, )
 //        }
-        i.setClass(this, TrackerActivity::class.java)
+        i.setClass(this, ListPetActivity::class.java)
         startActivity(i)
 //        replaceFragment(ListPetFragment())
     }

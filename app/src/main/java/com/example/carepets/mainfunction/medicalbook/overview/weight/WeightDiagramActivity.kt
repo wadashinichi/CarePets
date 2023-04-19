@@ -1,5 +1,6 @@
 package com.example.carepets.mainfunction.medicalbook.overview.weight
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.view.children
@@ -21,6 +22,14 @@ class WeightDiagramActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         res = PetWeightRepository(application)
+        val intent: Intent = intent
+        val id = intent.getIntExtra("petId", 1)
+
+        binding.btnAdd.setOnClickListener {
+            val i = Intent(this, AddWeightActivity::class.java)
+            intent.putExtra("petId", id)
+            startActivity(i)
+        }
 
     }
     private fun displayList(wlist: List<PetWeight>) {

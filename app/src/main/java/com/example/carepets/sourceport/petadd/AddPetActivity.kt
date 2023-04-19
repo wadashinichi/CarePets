@@ -5,6 +5,7 @@ import android.app.blob.BlobHandle
 import android.app.blob.BlobStoreManager
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.icu.util.Calendar
 import android.net.Uri
@@ -17,6 +18,7 @@ import com.example.carepets.database.PetRepository
 import com.example.carepets.databinding.ActivityAddPetBinding
 import com.example.carepets.mainfunction.TrackerActivity
 import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import java.sql.Blob
 
 class AddPetActivity : AppCompatActivity() {
@@ -28,6 +30,7 @@ class AddPetActivity : AppCompatActivity() {
         binding = ActivityAddPetBinding.inflate(layoutInflater)
         setContentView(binding.root)
         res = PetRepository(application)
+
 
         var name: String = ""
         var birth: String = ""
@@ -44,9 +47,10 @@ class AddPetActivity : AppCompatActivity() {
         binding.btnSubmit.setOnClickListener {
             name = binding.editName.text.toString()
             species = binding.editSpecies.text.toString()
-            img = decodeImg() as Blob
+//            img = decodeImg() as Blob
             var pet: Pet = Pet(null, name, img, birth, species)
             res.insert(pet)
+            reDirect()
         }
 
     }
@@ -69,17 +73,19 @@ class AddPetActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        var uri: Uri
+        var bmp: Bitmap
         if (requestCode == RESULT_OK && data != null) {
             var selectedImgUri: Uri? = data.data
             binding.imgPet.setImageURI(selectedImgUri)
-//            if (selectedImgUri != null) {
-//                uri = selectedImgUri
-//                var inputStream: InputStream? = contentResolver.openInputStream(uri)
-//                bmp = BitmapFactory.decodeStream(inputStream)
-//            }
+            if (selectedImgUri != null) {
+                uri = selectedImgUri
+                var inputStream: InputStream? = contentResolver.openInputStream(uri)
+                bmp = BitmapFactory.decodeStream(inputStream)
+            }
         }
     }
-    fun decodeImg(): ByteArray {
+    private fun decodeImg(): ByteArray {
         var bitmapDrawable: BitmapDrawable = binding.imgPet.drawable as BitmapDrawable
         var bm: Bitmap = bitmapDrawable.bitmap
         var byteArr: ByteArrayOutputStream = ByteArrayOutputStream()
