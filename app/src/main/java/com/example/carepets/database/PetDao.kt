@@ -22,6 +22,7 @@ interface PetDao {
     @Query ("SELECT * FROM pet_table WHERE id = :id")
     fun getPetById(id: Int): Pet
 
-//    @Query("SELECT * FROM pet_table ")
+    @Query("DELETE FROM pet_table")
+    fun delAll()
 
 }

@@ -15,12 +15,13 @@ import com.example.carepets.sourceport.petadd.AddPetActivity
 class ListPetActivity : AppCompatActivity() {
     private lateinit var binding: ActivityListPetBinding
     private lateinit var res: PetRepository
+    private lateinit var adapter: PetListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityListPetBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        setSupportActionBar(binding.toolBar)
         res = PetRepository(application)
         var plist: List<Pet> = res.getAll()
         displayList(plist)
@@ -30,9 +31,13 @@ class ListPetActivity : AppCompatActivity() {
             i.setClass(this, AddPetActivity::class.java)
             startActivity(i)
         }
+//        binding.btnDel.setOnClickListener {
+//            res.delAll()
+//            adapter.notifyDataSetChanged()
+//        }
     }
     fun displayList(plist: List<Pet>) {
-        val adapter = PetListAdapter(plist, this)
+        adapter = PetListAdapter(plist, this)
         binding.rvPetList.adapter = adapter
         binding.rvPetList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         var decorate: RecyclerView.ItemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)

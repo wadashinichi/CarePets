@@ -31,15 +31,8 @@ class TrackerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         binding = ActivityTrackerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        var i: Intent = intent
-//        var bundle: Bundle? = i.getBundleExtra("bundle")
-//        if (bundle != null) {
-//            id = bundle.getInt("id")
-//        }
-//        id = i.getIntExtra("id", 1)
-
-        var i: Intent = intent
-        id = i.getIntExtra("petId", 1)
+        var intent: Intent = intent
+        id = intent.getIntExtra("petId", 1)
 
         setSupportActionBar(binding.toolBar)
         var toggle = ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolBar, R.string.drawer_open, R.string.drawer_close)

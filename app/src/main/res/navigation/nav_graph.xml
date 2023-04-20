@@ -29,5 +29,14 @@
         android:id="@+id/listPetFragment"
         android:name="com.example.carepets.sourceport.petlist.ListPetFragment"
         android:label="fragment_list_pet"
-        tools:layout="@layout/fragment_list_pet" />
+        tools:layout="@layout/fragment_list_pet" >
+        <action
+            android:id="@+id/action_listPetFragment_to_addPetActivity"
+            app:destination="@id/addPetActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/addPetActivity"
+        android:name="com.example.carepets.sourceport.petadd.AddPetActivity"
+        android:label="activity_add_pet"
+        tools:layout="@layout/activity_add_pet" />
 </navigation>

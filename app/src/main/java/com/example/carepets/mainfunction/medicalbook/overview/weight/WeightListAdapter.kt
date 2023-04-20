@@ -26,7 +26,6 @@ class WeightListAdapter(var wlist: List<PetWeight>) : RecyclerView.Adapter<Weigh
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
         var item = wlist[position]
         holder.itemWeight.text = "${item.weightDate} - ${item.weightTime} - ${item.weightResult}kg"
     }

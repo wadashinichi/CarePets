@@ -14,6 +14,7 @@
     <string name="app_features">Care Pets is the mobile application that show you how to take care of your pets in the best way, and help help you manage routine job about Pets</string>
 
     // pet list
+    <string name="pet_list_title">Pet List</string>
     <string name="plus">+</string>
     <string name="title_activity_main_component">MainComponentActivity</string>
     <string name="title_home">Home</string>
@@ -22,12 +23,14 @@
     <string name="tab_text_1">Overview</string>
     <string name="tab_text_2">Vaccination</string>
     <string name="tab_text_3">Note</string>
+    <string name="delete">x</string>
 
     // pet infor
-    <string name="name">Name</string>
+   <string name="add_list_title">Add Pet</string>
+   <string name="name">Name</string>
     <string name="birth">Birth</string>
     <string name="species">Species</string>
-    <string name="submit">Submit</string>
+    <string name="submit">Save</string>
 
     // overview
     <string name="weight">Weight</string>
@@ -40,9 +43,10 @@
 
     // weight
     <string name="weight_diagram">Diagram for times of measurement</string>
-<!--    <string name="weight">Weight</string>-->
+    <!--    <string name="weight">Weight</string>-->
     <string name="date">Date</string>
     <string name="time">Time</string>
+    <string name="add_weight_title">Add Pet\'s Weight</string>
 
     // reminder
     <string name="rm_title_meal">Meal Reminders</string>

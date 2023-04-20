@@ -101,6 +101,7 @@
 
                 android:drawableStart="@drawable/ic_clock"
                 android:drawablePadding="10dp"
+                android:textSize="18sp"
                 app:drawableStartCompat="@drawable/ic_clock" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

@@ -20,15 +20,20 @@ class ReminderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentReminderBinding.inflate(layoutInflater)
-//        binding.switchWalk.cha
-        if (binding.switchWalk.isChecked) {
+
+        var timeWalk: String = ""
+        binding.tvWalk.setOnClickListener {view: View ->
+            timeWalk = takeTime(view)
+            binding.tvWalk.text = timeWalk
+        }
+//        if (binding.switchWalk.isChecked) {
 //            if (binding.tvWalk.text == "") {
 //                binding.tvWalk.text = takeTime()
 //            } else {
-////                Dat thong bao cho dien thoai
+////          Dat thong bao cho dien thoai
 //            }
-        }
-        // Inflate the layout for this fragment
+//        }
+//        binding.switchWalk.drawableStateCh
         return binding.root
     }
     private fun takeTime(view: View): String {

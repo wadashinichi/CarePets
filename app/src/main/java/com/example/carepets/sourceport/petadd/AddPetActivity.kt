@@ -12,7 +12,11 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.MenuItem
 import android.view.View
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.example.carepets.R
 import com.example.carepets.database.Pet
 import com.example.carepets.database.PetRepository
 import com.example.carepets.databinding.ActivityAddPetBinding
@@ -31,6 +35,11 @@ class AddPetActivity : AppCompatActivity() {
         setContentView(binding.root)
         res = PetRepository(application)
 
+//        val navControl = this.findNavController(R.id.homeFragment)
+//        NavigationUI.setupActionBarWithNavController(this, navControl)
+        setSupportActionBar(binding.toolBar)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         var name: String = ""
         var birth: String = ""
@@ -52,6 +61,7 @@ class AddPetActivity : AppCompatActivity() {
             res.insert(pet)
             reDirect()
         }
+
 
     }
     private fun takeDate(view: View): String {
@@ -96,5 +106,16 @@ class AddPetActivity : AppCompatActivity() {
         var i: Intent = Intent()
         i.setClass(this, TrackerActivity::class.java)
         startActivity(i)
+    }
+
+//    override fun onSupportNavigateUp(): Boolean {
+//        val navController = this.findNavController(R.id.a)
+//        return navController.navigateUp()
+//    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

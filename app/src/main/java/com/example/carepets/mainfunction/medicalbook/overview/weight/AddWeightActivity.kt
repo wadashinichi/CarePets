@@ -6,6 +6,7 @@ import android.content.Intent
 import android.icu.util.Calendar
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import com.example.carepets.R
 import com.example.carepets.database.PetWeight
@@ -25,23 +26,27 @@ class AddWeightActivity : AppCompatActivity() {
         setContentView(binding.root)
         res = PetWeightRepository(application)
 
+        setSupportActionBar(binding.toolBar)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val intent: Intent = intent
-        var id: Int = intent.getIntExtra("petId", 1)
+        val id: Int = intent.getIntExtra("petId", 1)
         var date: String = ""
         var time: String = ""
         var result: Float = 0F
-        binding.editDate.setOnClickListener {view: View ->
+        binding.tvDate.setOnClickListener {view: View ->
             date = takeDate(view)
         }
-        binding.editTime.setOnClickListener {view: View ->
+        binding.tvTime.setOnClickListener {view: View ->
             time = takeTime(view)
         }
         binding.btnSubmit.setOnClickListener {
             result = binding.editWeight.text.toString().toFloat()
             var weight: PetWeight = PetWeight(null, id, date, time, result)
             res.insert(weight)
-            var i: Intent = Intent()
-            i.setClass(this, WeightDiagramActivity::class.java)
+
+            var i: Intent = Intent(this, WeightDiagramActivity::class.java)
+            i.putExtra("petId", id)
             startActivity(i)
         }
 
@@ -68,4 +73,11 @@ class AddWeightActivity : AppCompatActivity() {
             .show()
         return "$hour:$minute"
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 }

@@ -25,6 +25,7 @@ class OverViewFragment : Fragment() {
         trackerActivity = activity as TrackerActivity
         var id = trackerActivity.getPetId()
 
+
         binding.cardView1.setOnClickListener {
             val i: Intent = Intent(requireContext(), WeightDiagramActivity::class.java)
             i.putExtra("petId", id)

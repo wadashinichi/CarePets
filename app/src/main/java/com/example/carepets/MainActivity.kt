@@ -23,6 +23,7 @@ import com.example.carepets.mainfunction.reminder.ReminderFragment
 import com.example.carepets.sourceport.aboutus.AboutFragment
 import com.example.carepets.sourceport.petlist.ListPetActivity
 import com.example.carepets.sourceport.petlist.ListPetFragment
+import com.example.carepets.sourceport.start.StartFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 class MainActivity : AppCompatActivity() {
@@ -37,15 +38,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         res = PetRepository(application)
-
-        var i: Intent = Intent()
-        var count: Int = res.getCount()
-//        if (count == 0) {
-//            i.setClass(this, )
+//        replaceFragment(StartFragment())
+//        try {
+//            Thread.sleep(5000)
+//        } catch (e: Exception) {
+//            e.printStackTrace()
 //        }
+        var i: Intent = Intent()
         i.setClass(this, ListPetActivity::class.java)
         startActivity(i)
-//        replaceFragment(ListPetFragment())
     }
 
     private fun replaceFragment(fragment: Fragment) {

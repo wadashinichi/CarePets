@@ -14,4 +14,5 @@ class PetRepository(var application: Application) {
     fun getCount(): Int = db.petDao().getPetCount()
     fun getAll(): List<Pet> = db.petDao().getAll()
     fun getById(id: Int): Pet = db.petDao().getPetById(id)
+    fun delAll() = db.petDao().delAll()
 }

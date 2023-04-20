@@ -35,6 +35,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    // chart
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 apply plugin: 'kotlin-kapt'
 
@@ -62,4 +68,8 @@ dependencies {
 
     // recyclerView
     implementation 'androidx.recyclerview:recyclerview:1.3.0'
+
+    // chart
+
+//    implementation 'com.jjoe64:graphview:4.2.2'
 }
