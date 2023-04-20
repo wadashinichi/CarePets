@@ -14,6 +14,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.carepets.R
@@ -29,14 +30,13 @@ class AddPetActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddPetBinding
     private lateinit var res: PetRepository
+    lateinit var uri: Uri
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddPetBinding.inflate(layoutInflater)
         setContentView(binding.root)
         res = PetRepository(application)
 
-//        val navControl = this.findNavController(R.id.homeFragment)
-//        NavigationUI.setupActionBarWithNavController(this, navControl)
         setSupportActionBar(binding.toolBar)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -77,22 +77,26 @@ class AddPetActivity : AppCompatActivity() {
     }
     private fun pickImg() {
         var i: Intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        intent.type = "image/*"
-        startActivityForResult(i, 1)
+        startActivityForResult(i, 3)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        var uri: Uri
-        var bmp: Bitmap
-        if (requestCode == RESULT_OK && data != null) {
-            var selectedImgUri: Uri? = data.data
-            binding.imgPet.setImageURI(selectedImgUri)
-            if (selectedImgUri != null) {
-                uri = selectedImgUri
-                var inputStream: InputStream? = contentResolver.openInputStream(uri)
-                bmp = BitmapFactory.decodeStream(inputStream)
-            }
+        var img: ImageView = findViewById(R.id.imgPet)
+
+        if (resultCode == RESULT_OK && data != null) {
+            var selectedImg: Uri? = data.data
+            img.setImageURI(selectedImg)
+
+//            try {
+//                var inputStream: InputStream? = selectedImg?.let {
+//                    contentResolver.openInputStream(
+//                        it
+//                    )
+//                }
+//            } catch (e: FileNotFoundException) {
+//                e.printStackTrace()
+//            }
         }
     }
     private fun decodeImg(): ByteArray {
@@ -102,16 +106,11 @@ class AddPetActivity : AppCompatActivity() {
         bm.compress(Bitmap.CompressFormat.PNG, 100, byteArr)
         return byteArr.toByteArray()
     }
-    fun reDirect() {
+    private fun reDirect() {
         var i: Intent = Intent()
         i.setClass(this, TrackerActivity::class.java)
         startActivity(i)
     }
-
-//    override fun onSupportNavigateUp(): Boolean {
-//        val navController = this.findNavController(R.id.a)
-//        return navController.navigateUp()
-//    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> onBackPressed()

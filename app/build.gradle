@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.carepets"
-        minSdk 24
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -72,4 +72,7 @@ dependencies {
     // chart
 
 //    implementation 'com.jjoe64:graphview:4.2.2'
+
+    // notification
+//    implementation "com.android.support:support-compat:27.1.1"
 }

@@ -1,5 +1,7 @@
 package com.example.carepets.mainfunction
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -138,4 +140,5 @@ class TrackerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
     fun getPetId(): Int {
         return id
     }
+
 }
