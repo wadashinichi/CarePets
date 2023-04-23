@@ -3,7 +3,7 @@ package com.example.carepets.database
 import android.content.Context
 import androidx.room.*
 
-@Database(entities = [Pet::class, PetWeight::class], version = 2)
+@Database(entities = [Pet::class, PetWeight::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class PetDatabase : RoomDatabase() {
 

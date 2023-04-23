@@ -15,6 +15,7 @@ import android.provider.MediaStore
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.carepets.R
@@ -22,15 +23,17 @@ import com.example.carepets.database.Pet
 import com.example.carepets.database.PetRepository
 import com.example.carepets.databinding.ActivityAddPetBinding
 import com.example.carepets.mainfunction.TrackerActivity
+import com.example.carepets.sourceport.petlist.ListPetActivity
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.sql.Blob
 
+@Suppress("DEPRECATION")
 class AddPetActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddPetBinding
     private lateinit var res: PetRepository
-    lateinit var uri: Uri
+    private var uri: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddPetBinding.inflate(layoutInflater)
@@ -44,36 +47,36 @@ class AddPetActivity : AppCompatActivity() {
         var name: String = ""
         var birth: String = ""
         var species: String = ""
-        var img: Blob? = null
+        var img: String = ""
         binding.btnPickImg.setOnClickListener {
             pickImg()
+            img = uri
         }
-
 
         binding.editBirth.setOnClickListener {view: View ->
-            birth = takeDate(view)
+            takeDate(view)
         }
+
         binding.btnSubmit.setOnClickListener {
             name = binding.editName.text.toString()
             species = binding.editSpecies.text.toString()
-//            img = decodeImg() as Blob
+            birth = binding.editBirth.text.toString()
+
             var pet: Pet = Pet(null, name, img, birth, species)
             res.insert(pet)
             reDirect()
         }
-
-
     }
-    private fun takeDate(view: View): String {
+    private fun takeDate(view: View){
         var calendar = Calendar.getInstance()
         var year = calendar.get(Calendar.YEAR)
         var month = calendar.get(Calendar.MONTH)
         var day = calendar.get(Calendar.DAY_OF_MONTH)
+        var date: String = ""
         DatePickerDialog(this, DatePickerDialog.OnDateSetListener{ view, year, month, day ->
             binding.editBirth.text = "$day/${month+1}/$year"
         }, year, month, day)
             .show()
-        return "$day/${month+1}/$year"
     }
     private fun pickImg() {
         var i: Intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -88,26 +91,14 @@ class AddPetActivity : AppCompatActivity() {
             var selectedImg: Uri? = data.data
             img.setImageURI(selectedImg)
 
-//            try {
-//                var inputStream: InputStream? = selectedImg?.let {
-//                    contentResolver.openInputStream(
-//                        it
-//                    )
-//                }
-//            } catch (e: FileNotFoundException) {
-//                e.printStackTrace()
-//            }
+            if (selectedImg != null) {
+                uri = selectedImg.toString()
+            }
+
         }
     }
-    private fun decodeImg(): ByteArray {
-        var bitmapDrawable: BitmapDrawable = binding.imgPet.drawable as BitmapDrawable
-        var bm: Bitmap = bitmapDrawable.bitmap
-        var byteArr: ByteArrayOutputStream = ByteArrayOutputStream()
-        bm.compress(Bitmap.CompressFormat.PNG, 100, byteArr)
-        return byteArr.toByteArray()
-    }
     private fun reDirect() {
-        var i: Intent = Intent()
+        val i: Intent = Intent()
         i.setClass(this, TrackerActivity::class.java)
         startActivity(i)
     }

@@ -35,13 +35,15 @@ class AddWeightActivity : AppCompatActivity() {
         var time: String = ""
         var result: Float = 0F
         binding.tvDate.setOnClickListener {view: View ->
-            date = takeDate(view)
+            takeDate(view)
         }
         binding.tvTime.setOnClickListener {view: View ->
             time = takeTime(view)
         }
         binding.btnSubmit.setOnClickListener {
             result = binding.editWeight.text.toString().toFloat()
+            date = binding.editDate.text.toString()
+
             var weight: PetWeight = PetWeight(null, id, date, time, result)
             res.insert(weight)
 
@@ -52,7 +54,7 @@ class AddWeightActivity : AppCompatActivity() {
 
 
     }
-    private fun takeDate(view: View): String {
+    private fun takeDate(view: View){
         var calendar = Calendar.getInstance()
         var year = calendar.get(Calendar.YEAR)
         var month = calendar.get(Calendar.MONTH)
@@ -61,7 +63,6 @@ class AddWeightActivity : AppCompatActivity() {
             binding.editDate.text = "$day/${month + 1}/$year"
         }, year, month, day)
             .show()
-        return "$day/${month+1}/$year"
     }
     private fun takeTime(view: View): String {
         val clock = Calendar.getInstance()

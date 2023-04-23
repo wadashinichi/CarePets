@@ -1,10 +1,13 @@
 package com.example.carepets.mainfunction.home
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.net.toUri
 import com.example.carepets.R
 import com.example.carepets.database.Pet
 import com.example.carepets.database.PetRepository
@@ -27,8 +30,20 @@ class HomeFragment : Fragment() {
         id = trackerActivity.getPetId()
         // Inflate the layout for this fragment
         var pet: Pet = res.getById(id)
-            binding.petName.text = pet.name
+        binding.petName.text = pet.name
+        var img: String = ""
+        img = pet.img
+        var uri: Uri = img.toUri()
+
+        if (uri != null) {
+            assignImg(uri)
+        }
         return binding.root
+    }
+
+    private fun assignImg(uri: Uri) {
+        var img: ImageView = binding.imgPet
+        img.setImageURI(uri)
     }
 
 

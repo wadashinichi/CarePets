@@ -2,6 +2,7 @@ package com.example.carepets.sourceport.petlist
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat.startActivities
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carepets.R
 import com.example.carepets.database.Pet
@@ -43,17 +45,22 @@ class PetListAdapter(var plist: List<Pet>, var context: Context) : RecyclerView.
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var item = plist[position]
-//        holder.img.setImageResource(item.img)
         holder.name.text = item.name
         holder.species.text = item.species + " - " + item.birth
+        holder.img.setImageURI(convertToUri(item.img))
+
         var id: Int? = plist[position].id
         holder.layoutItem.setOnClickListener {
             sendData(id, context)
         }
     }
-    fun sendData(id: Int?, context: Context) {
+    private fun sendData(id: Int?, context: Context) {
         val i: Intent = Intent(context, TrackerActivity::class.java)
         i.putExtra("petId", id)
         startActivity(context, i, null)
+    }
+    private fun convertToUri(str: String): Uri {
+        var uri: Uri = str.toUri()
+        return uri
     }
 }

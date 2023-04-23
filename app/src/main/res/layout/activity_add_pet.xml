@@ -35,7 +35,7 @@
 
     <ImageView
         android:id="@+id/imgPet"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:src="@drawable/ic_pet_foot"
         android:padding="5dp"
