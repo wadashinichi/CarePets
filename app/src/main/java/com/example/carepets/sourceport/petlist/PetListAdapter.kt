@@ -47,6 +47,8 @@ class PetListAdapter(var plist: List<Pet>, var context: Context) : RecyclerView.
         var item = plist[position]
         holder.name.text = item.name
         holder.species.text = item.species + " - " + item.birth
+
+        // image
         holder.img.setImageURI(convertToUri(item.img))
 
         var id: Int? = plist[position].id

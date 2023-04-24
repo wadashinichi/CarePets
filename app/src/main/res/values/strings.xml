@@ -26,8 +26,8 @@
     <string name="delete">x</string>
 
     // pet infor
-   <string name="add_list_title">Add Pet</string>
-   <string name="name">Name</string>
+    <string name="add_list_title">Add Pet</string>
+    <string name="name">Name</string>
     <string name="birth">Birth</string>
     <string name="species">Species</string>
     <string name="submit">Save</string>

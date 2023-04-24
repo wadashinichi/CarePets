@@ -24,6 +24,7 @@ import com.example.carepets.database.PetRepository
 import com.example.carepets.databinding.ActivityAddPetBinding
 import com.example.carepets.mainfunction.TrackerActivity
 import com.example.carepets.sourceport.petlist.ListPetActivity
+import com.example.carepets.sourceport.petlist.PetListAdapter
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.sql.Blob
@@ -50,6 +51,8 @@ class AddPetActivity : AppCompatActivity() {
         var img: String = ""
         binding.btnPickImg.setOnClickListener {
             pickImg()
+
+            // image
             img = uri
         }
 
@@ -99,7 +102,7 @@ class AddPetActivity : AppCompatActivity() {
     }
     private fun reDirect() {
         val i: Intent = Intent()
-        i.setClass(this, TrackerActivity::class.java)
+        i.setClass(this, ListPetActivity::class.java)
         startActivity(i)
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

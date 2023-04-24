@@ -3,12 +3,13 @@ package com.example.carepets.database
 import android.content.Context
 import androidx.room.*
 
-@Database(entities = [Pet::class, PetWeight::class], version = 1)
+@Database(entities = [Pet::class, PetWeight::class, PetHeight::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class PetDatabase : RoomDatabase() {
 
     abstract fun petDao(): PetDao
     abstract fun weightDao(): PetWeightDao
+    abstract fun heightDao(): PetHeightDao
 
     companion object {
 

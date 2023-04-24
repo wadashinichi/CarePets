@@ -28,9 +28,10 @@ class HomeFragment : Fragment() {
         res = PetRepository(requireActivity().application)
         trackerActivity = activity as TrackerActivity
         id = trackerActivity.getPetId()
-        // Inflate the layout for this fragment
         var pet: Pet = res.getById(id)
         binding.petName.text = pet.name
+
+        // image
         var img: String = ""
         img = pet.img
         var uri: Uri = img.toUri()
