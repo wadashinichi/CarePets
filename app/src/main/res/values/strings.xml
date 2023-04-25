@@ -31,6 +31,7 @@
     <string name="birth">Birth</string>
     <string name="species">Species</string>
     <string name="submit">Save</string>
+    <string name="age">Age</string>
 
     // overview
     <string name="weight">Weight</string>
@@ -59,6 +60,9 @@
     <string name="lunch">Lunch</string>
     <string name="dinner">Dinner</string>
     <string name="snack">Snack</string>
+
+   // height
+   <string name="add_height_title">Add Pet\'s Height</string>
 
 
 </resources>

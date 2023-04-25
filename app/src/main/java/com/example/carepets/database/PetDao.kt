@@ -3,15 +3,13 @@ package com.example.carepets.database
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface PetDao {
 
     @Insert
     fun insertPetFull(pet: Pet)
-
-//    @Query("INSERT INTO pet_table(\"pet_name\", \"pet_img\", \"pet_birth\", \"pet_species\") VALUES (:name, :img, :birth, :species)")
-//    fun insertPet(name: String, img: Int, birth: String, species: String)
 
     @Query("SELECT COUNT (id) FROM pet_table")
     fun getPetCount(): Int
@@ -24,5 +22,11 @@ interface PetDao {
 
     @Query("DELETE FROM pet_table")
     fun delAll()
+
+    @Query("UPDATE pet_table SET pet_name = :name," +
+            "pet_img = :img, " +
+            "pet_birth = :birth, " +
+            "pet_species = :species WHERE id = :id")
+    fun updatePet(name: String, img: String, birth: String, species: String, id: Int)
 
 }

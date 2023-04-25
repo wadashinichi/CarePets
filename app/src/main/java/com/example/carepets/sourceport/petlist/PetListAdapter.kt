@@ -49,7 +49,11 @@ class PetListAdapter(var plist: List<Pet>, var context: Context) : RecyclerView.
         holder.species.text = item.species + " - " + item.birth
 
         // image
-        holder.img.setImageURI(convertToUri(item.img))
+        if (item.birth != "") {
+            holder.img.setImageURI(convertToUri(item.img))
+        } else {
+            holder.img.setImageResource(R.drawable.ic_pet_foot)
+        }
 
         var id: Int? = plist[position].id
         holder.layoutItem.setOnClickListener {

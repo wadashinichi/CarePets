@@ -35,7 +35,8 @@ class ListPetActivity : AppCompatActivity() {
         }
         binding.btnDel.setOnClickListener {
             res.delAll()
-            delList()
+//            delList()
+            displayList(res.getAll())
         }
     }
 
@@ -52,6 +53,6 @@ class ListPetActivity : AppCompatActivity() {
 //        adapter = PetListAdapter(plist, this)
 //        adapter.notifyItemMoved(0, plist.size)
         plist = res.getAll()
-        adapter.notifyDataSetChanged()
+//        adapter.notifyDataSetChanged()
     }
 }

@@ -65,12 +65,13 @@ class WeightDiagramActivity : AppCompatActivity() {
         val arr: Array<DataPoint> = list.toTypedArray()
         val series: LineGraphSeries<DataPoint> = LineGraphSeries(arr)
         binding.weightGraph.animate()
-        binding.weightGraph.viewport.isScrollable = true
-        binding.weightGraph.viewport.isScalable = true
+        binding.weightGraph.viewport.isScrollable = false
+        binding.weightGraph.viewport.isScalable = false
         binding.weightGraph.viewport.setScrollableY(false)
-        binding.weightGraph.viewport.setScalableY(false)
+        binding.weightGraph.viewport.setScalableY(true)
         series.color = R.color.black
         binding.weightGraph.addSeries(series)
+//        binding.weightGraph.setL
     }
     private fun displayList(wlist: List<PetWeight>) {
         val adapter = WeightListAdapter(wlist)

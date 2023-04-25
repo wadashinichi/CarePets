@@ -65,9 +65,20 @@ class AddPetActivity : AppCompatActivity() {
             species = binding.editSpecies.text.toString()
             birth = binding.editBirth.text.toString()
 
-            var pet: Pet = Pet(null, name, img, birth, species)
-            res.insert(pet)
-            reDirect()
+            if (name == "") {
+                binding.editName.error = "Please input this field!"
+                Toast.makeText(this, "Need to input name", Toast.LENGTH_SHORT)
+            } else if (birth == "") {
+                binding.editBirth.error = "Please choose a day!"
+                Toast.makeText(this, "Need to choose birth", Toast.LENGTH_SHORT)
+            } else if (species == "") {
+                binding.editSpecies.error = "Please input this field!"
+                Toast.makeText(this, "Need to input species", Toast.LENGTH_SHORT)
+            } else {
+                var pet: Pet = Pet(null, name, img, birth, species)
+                res.insert(pet)
+                reDirect()
+            }
         }
     }
     private fun takeDate(view: View){

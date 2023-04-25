@@ -15,10 +15,13 @@
         android:theme="@style/Theme.CarePets"
         tools:targetApi="31">
         <activity
-            android:name=".HeightDiagramActivity"
+            android:name=".mainfunction.medicalbook.overview.modify.ModifyInforActivity"
             android:exported="false" />
         <activity
-            android:name=".AddHeightActivity"
+            android:name=".mainfunction.medicalbook.overview.height.HeightDiagramActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mainfunction.medicalbook.overview.height.AddHeightActivity"
             android:exported="false" />
         <activity
             android:name=".mainfunction.medicalbook.overview.weight.AddWeightActivity"
@@ -45,7 +48,7 @@
             </intent-filter>
         </activity> <!-- broadcast -->
         <receiver
-            android:name=".mainfunction.Broadcast"
+            android:name=".mainfunction.reminder.Broadcast"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

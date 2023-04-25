@@ -1,4 +1,4 @@
-package com.example.carepets.mainfunction
+package com.example.carepets.mainfunction.reminder
 
 import android.app.NotificationManager
 import android.content.BroadcastReceiver

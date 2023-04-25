@@ -1,7 +1,5 @@
 package com.example.carepets.mainfunction
 
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,7 +15,6 @@ import com.example.carepets.mainfunction.medicalbook.MedicalBookFragment
 import com.example.carepets.mainfunction.reminder.ReminderFragment
 import com.example.carepets.sourceport.aboutus.AboutFragment
 import com.example.carepets.sourceport.petlist.ListPetActivity
-import com.example.carepets.sourceport.petlist.ListPetFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 

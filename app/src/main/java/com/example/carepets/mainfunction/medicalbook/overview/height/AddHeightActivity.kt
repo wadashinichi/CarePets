@@ -7,6 +7,8 @@ import com.example.carepets.R
 class AddHeightActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_height)
+        setContentView(R.layout.activity_weight_diagram)
+
+        val
     }
 }
