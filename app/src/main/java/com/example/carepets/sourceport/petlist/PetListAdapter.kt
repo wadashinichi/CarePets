@@ -16,13 +16,16 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carepets.R
 import com.example.carepets.database.Pet
+import com.example.carepets.database.PetRepository
 import com.example.carepets.databinding.ActivityAddPetBinding
 import com.example.carepets.databinding.ActivityListPetBinding
 import com.example.carepets.mainfunction.TrackerActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class PetListAdapter(var plist: List<Pet>, var context: Context) : RecyclerView.Adapter<PetListAdapter.ViewHolder>() {
 
-    private lateinit var binding: ActivityListPetBinding
+    private lateinit var res: PetRepository
+    private lateinit var listPetActivity: ListPetActivity
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val img: ImageView = itemView.findViewById(R.id.pet_image)
@@ -59,6 +62,10 @@ class PetListAdapter(var plist: List<Pet>, var context: Context) : RecyclerView.
         holder.layoutItem.setOnClickListener {
             sendData(id, context)
         }
+        holder.layoutItem.setOnLongClickListener {
+            showDialog(id)
+            return@setOnLongClickListener true
+        }
     }
     private fun sendData(id: Int?, context: Context) {
         val i: Intent = Intent(context, TrackerActivity::class.java)
@@ -69,4 +76,22 @@ class PetListAdapter(var plist: List<Pet>, var context: Context) : RecyclerView.
         var uri: Uri = str.toUri()
         return uri
     }
+    private fun showDialog(id: Int?) {
+        MaterialAlertDialogBuilder(context)
+            .setTitle("Delete it?")
+            .setMessage("Choose to delete this pet or not.")
+            .setCancelable(true)
+
+            .setPositiveButton("DELETE") {_, _ ->
+                if (id != null) {
+                    delPet(id)
+                }
+            }.show()
+    }
+    private fun delPet(id: Int) {
+        var i: Intent = Intent(context, DelItemActivity::class.java)
+        i.putExtra("petId", id)
+        context.startActivity(i)
+    }
+
 }

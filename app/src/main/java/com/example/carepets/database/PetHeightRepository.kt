@@ -15,5 +15,6 @@ class PetHeightRepository(var application: Application) {
 
     fun getHeightById(id: Int): List<PetHeight> = db.heightDao().getHeightById(id)
 
+    fun getLastHeight(id: Int): Double = db.heightDao().getLastHeight(id)
 
 }

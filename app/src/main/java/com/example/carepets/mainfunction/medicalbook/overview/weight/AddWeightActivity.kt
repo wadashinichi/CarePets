@@ -12,12 +12,14 @@ import com.example.carepets.R
 import com.example.carepets.database.PetWeight
 import com.example.carepets.database.PetWeightRepository
 import com.example.carepets.databinding.ActivityAddWeightBinding
+import com.example.carepets.mainfunction.medicalbook.overview.height.HeightDiagramActivity
 import java.time.Clock
 
 class AddWeightActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddWeightBinding
     lateinit var res: PetWeightRepository
+    private var id: Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +32,7 @@ class AddWeightActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val intent: Intent = intent
-        val id: Int = intent.getIntExtra("petId", 1)
+        id = intent.getIntExtra("petId", 1)
         var date: String = ""
         var time: String = ""
         var result: Float = 0F
@@ -38,18 +40,17 @@ class AddWeightActivity : AppCompatActivity() {
             takeDate(view)
         }
         binding.tvTime.setOnClickListener {view: View ->
-            time = takeTime(view)
+            takeTime(view)
         }
         binding.btnSubmit.setOnClickListener {
             result = binding.editWeight.text.toString().toFloat()
             date = binding.editDate.text.toString()
+            time = binding.editTime.text.toString()
 
             var weight: PetWeight = PetWeight(null, id, date, time, result)
             res.insert(weight)
 
-            var i: Intent = Intent(this, WeightDiagramActivity::class.java)
-            i.putExtra("petId", id)
-            startActivity(i)
+            reDirect()
         }
 
 
@@ -64,7 +65,7 @@ class AddWeightActivity : AppCompatActivity() {
         }, year, month, day)
             .show()
     }
-    private fun takeTime(view: View): String {
+    private fun takeTime(view: View) {
         val clock = Calendar.getInstance()
         var hour = clock.get(Calendar.HOUR)
         var minute = clock.get(Calendar.MINUTE)
@@ -72,13 +73,16 @@ class AddWeightActivity : AppCompatActivity() {
             binding.editTime.text = "$hour:$minute"
         }, hour, minute, true)
             .show()
-        return "$hour:$minute"
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            android.R.id.home -> onBackPressed()
+            android.R.id.home -> reDirect()
         }
         return super.onOptionsItemSelected(item)
     }
-
+    fun reDirect() {
+        var i: Intent = Intent(this, WeightDiagramActivity::class.java)
+        i.putExtra("petId", id)
+        startActivity(i)
+    }
 }

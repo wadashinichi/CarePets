@@ -13,6 +13,7 @@ import com.example.carepets.database.Pet
 import com.example.carepets.database.PetWeight
 import com.example.carepets.database.PetWeightRepository
 import com.example.carepets.databinding.ActivityWeightDiagramBinding
+import com.example.carepets.mainfunction.TrackerActivity
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 
@@ -21,6 +22,7 @@ class WeightDiagramActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWeightDiagramBinding
     private lateinit var res: PetWeightRepository
     private lateinit var wlist : List<PetWeight>
+    private var id: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +34,7 @@ class WeightDiagramActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         res = PetWeightRepository(application)
         val intent: Intent = intent
-        val id = intent.getIntExtra("petId", 1)
+        id = intent.getIntExtra("petId", 1)
 
         wlist = res.getWeightById(id)
 
@@ -71,7 +73,6 @@ class WeightDiagramActivity : AppCompatActivity() {
         binding.weightGraph.viewport.setScalableY(true)
         series.color = R.color.black
         binding.weightGraph.addSeries(series)
-//        binding.weightGraph.setL
     }
     private fun displayList(wlist: List<PetWeight>) {
         val adapter = WeightListAdapter(wlist)
@@ -82,8 +83,13 @@ class WeightDiagramActivity : AppCompatActivity() {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            android.R.id.home -> onBackPressed()
+            android.R.id.home -> reDirect()
         }
         return super.onOptionsItemSelected(item)
+    }
+    private fun reDirect() {
+        val i = Intent(this, TrackerActivity::class.java)
+        i.putExtra("petId", id)
+        startActivity(i)
     }
 }

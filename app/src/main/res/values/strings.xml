@@ -43,6 +43,7 @@
     <string name="title_activity_add_weight">AddWeightActivity</string>
 
     // weight
+    <string name="weight_diagram_title">Pet\'s Weight Diagram</string>
     <string name="weight_diagram">Diagram for times of measurement</string>
     <!--    <string name="weight">Weight</string>-->
     <string name="date">Date</string>
@@ -61,8 +62,8 @@
     <string name="dinner">Dinner</string>
     <string name="snack">Snack</string>
 
-   // height
-   <string name="add_height_title">Add Pet\'s Height</string>
+    // height
+    <string name="add_height_title">Add Pet\'s Height</string>
 
 
 </resources>

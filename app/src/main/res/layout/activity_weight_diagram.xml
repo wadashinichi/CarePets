@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="@string/add_weight_title"
+        app:title="@string/weight_diagram_title"
         android:background="@color/primary"
         app:titleTextColor="@color/white"
         />

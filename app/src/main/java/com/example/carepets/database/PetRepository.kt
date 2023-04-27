@@ -16,4 +16,5 @@ class PetRepository(var application: Application) {
     fun getById(id: Int): Pet = db.petDao().getPetById(id)
     fun delAll() = db.petDao().delAll()
     fun update(name: String, img: String, birth: String, species: String, id: Int) = db.petDao().updatePet(name, img, birth, species, id)
+    fun delById(id: Int) = db.petDao().delById(id)
 }

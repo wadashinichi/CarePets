@@ -20,4 +20,6 @@ interface PetWeightDao {
     @Query("SELECT * FROM weight_table WHERE pet_id = :id")
     fun getWeightById(id: Int): List<PetWeight>
 
+    @Query("SELECT weight_result FROM weight_table WHERE pet_id = :id ORDER BY weightId DESC LIMIT 1")
+    fun getLastWeight(id: Int): Float
 }

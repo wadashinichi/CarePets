@@ -15,6 +15,12 @@
         android:theme="@style/Theme.CarePets"
         tools:targetApi="31">
         <activity
+            android:name=".AddVaccinationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".sourceport.petlist.DelItemActivity"
+            android:exported="false" />
+        <activity
             android:name=".mainfunction.medicalbook.overview.modify.ModifyInforActivity"
             android:exported="false" />
         <activity
@@ -47,14 +53,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- broadcast -->
-        <receiver
-            android:name=".mainfunction.reminder.Broadcast"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.AIRPLANE_MODE" />
-            </intent-filter>
-        </receiver>
+        <receiver android:name=".mainfunction.reminder.Broadcast" />
     </application>
 
 </manifest>

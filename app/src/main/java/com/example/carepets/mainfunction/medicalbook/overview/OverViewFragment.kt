@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.example.carepets.R
 import com.example.carepets.databinding.FragmentOverViewBinding
 import com.example.carepets.mainfunction.TrackerActivity
+import com.example.carepets.mainfunction.medicalbook.overview.height.HeightDiagramActivity
 import com.example.carepets.mainfunction.medicalbook.overview.weight.AddWeightActivity
 import com.example.carepets.mainfunction.medicalbook.overview.weight.WeightDiagramActivity
 
@@ -31,11 +32,12 @@ class OverViewFragment : Fragment() {
             i.putExtra("petId", id)
             startActivity(i)
         }
-        // Inflate the layout for this fragment
+        binding.cardView2.setOnClickListener {
+            val i: Intent = Intent(requireContext(), HeightDiagramActivity::class.java)
+            i.putExtra("petId", id)
+            startActivity(i)
+        }
         return binding.root
     }
 
 }
-//val i: Intent = Intent(context, TrackerActivity::class.java)
-//i.putExtra("petId", id)
-//startActivity(context, i, null)

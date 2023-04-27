@@ -55,4 +55,10 @@ class ListPetActivity : AppCompatActivity() {
         plist = res.getAll()
 //        adapter.notifyDataSetChanged()
     }
+    fun delPet(id: Int) {
+        var pet: Pet = res.getById(id)
+        res.delById(id)
+        adapter.notifyItemRemoved(id)
+    }
+
 }

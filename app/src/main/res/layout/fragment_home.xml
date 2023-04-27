@@ -23,6 +23,7 @@
             android:id="@+id/imgPet"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_pet_foot"
             android:padding="5dp"
             />

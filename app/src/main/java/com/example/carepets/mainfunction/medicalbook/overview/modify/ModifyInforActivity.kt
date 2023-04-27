@@ -7,6 +7,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -24,13 +25,20 @@ class ModifyInforActivity : AppCompatActivity() {
     private lateinit var res: PetRepository
     private lateinit var editBirth: TextView
     private lateinit var uri: String
+    private var id: Int = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_pet)
 
+        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.tool_bar)
+        toolbar.title = "Add Pet's Height"
+
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         res = PetRepository(application)
         val intent: Intent = intent
-        val id = intent.getIntExtra("petId", 1)
+        id = intent.getIntExtra("petId", 1)
         val pet: Pet = res.getById(id)
 
         var name = ""
@@ -67,7 +75,6 @@ class ModifyInforActivity : AppCompatActivity() {
             i.putExtra("petId", id)
             startActivity(i)
         }
-
     }
     private fun takeDate(view: View){
         var calendar = Calendar.getInstance()
@@ -95,7 +102,17 @@ class ModifyInforActivity : AppCompatActivity() {
             if (selectedImg != null) {
                 uri = selectedImg.toString()
             }
-
         }
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+//    fun reDirect() {
+//        var i: Intent = Intent(this, TrackerActivity::class.java)
+//        i.putExtra("petId", id)
+//        startActivity(i)
+//    }
 }

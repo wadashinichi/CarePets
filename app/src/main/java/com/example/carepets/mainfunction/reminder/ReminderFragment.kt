@@ -9,11 +9,13 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.icu.util.Calendar
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.carepets.R
 import com.example.carepets.databinding.FragmentReminderBinding
 import java.util.Date
 
@@ -21,9 +23,9 @@ import java.util.Date
 class ReminderFragment : Fragment() {
 
     private lateinit var binding: FragmentReminderBinding
-
-
-    //    private lateinit var
+    private val NOTIFICATION_REMINDER_NIGHT = 1
+    private val CHANNEL_ID = "channelID"
+    private lateinit var calendar: Calendar
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,72 +34,42 @@ class ReminderFragment : Fragment() {
 
         var timeWalk: String = ""
         binding.tvWalk.setOnClickListener {view: View ->
-            timeWalk = takeTime(view)
+//            timeWalk = takeTime(view)
             binding.tvWalk.text = timeWalk
         }
         binding.switchWalk.setOnClickListener {
             if (binding.switchWalk.isChecked) {
-//                createNotificationChannel()
-//                binding.
+
             } else {
 
             }
         }
         return binding.root
     }
-    private fun takeTime(view: View): String {
-        val clock = Calendar.getInstance()
-        var hour = clock.get(Calendar.HOUR)
-        var minute = clock.get(Calendar.MINUTE)
-        TimePickerDialog(requireContext(), TimePickerDialog.OnTimeSetListener { view, hour, minute ->
-            binding.tvWalk.text = "$hour:$minute"
-        }, hour, minute, true)
-            .show()
-        return "$hour:$minute"
-    }
-    private fun createNotificationChannel(title: String, text: String) {
-        val name = title
-        val text = text
-        val important = NotificationManager.IMPORTANCE_DEFAULT
-        val channel = NotificationChannel("channel..1?", name, important)
-        channel.description = text
-        val notificationManager = requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(channel)
-
-    }
-    private fun scheduleNotification(name: String, des: String) {
-        val i: Intent = Intent(requireActivity().applicationContext, Broadcast::class.java)
-        val title = name
-        val text = des
-        i.putExtra("AnnounceTitle", title)
-        i.putExtra("AnnounceText", text)
-
-        val pendingIntent = PendingIntent.getBroadcast(requireContext().applicationContext,
-            1, i, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
-        val alarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        var time: Long = 0L
-//        time = getTime()
-        alarmManager.setExactAndAllowWhileIdle(
-            AlarmManager.RTC_WAKEUP,
-            time,
-            pendingIntent
-        )
-        showAlert(time, title, text)
-    }
-    private fun getTime(hour: Int, minute: Int, day: Int, month: Int, year: Int): Long {
-        val calendar = Calendar.getInstance()
-        calendar.set(year, month, day, hour, minute)
-        return calendar.timeInMillis
-    }
-    private fun showAlert(time: Long, title: String, message: String) {
-        val date = Date(time)
-        val dateFormat = android.text.format.DateFormat.getLongDateFormat(requireActivity().applicationContext)
-        val timeFormat = android.text.format.DateFormat.getTimeFormat(requireActivity().applicationContext)
-
-        AlertDialog.Builder(requireContext()).setTitle("Notification Scheduled")
-            .setMessage(
-                "Title: $title \nMessage $message \nAt: ${dateFormat.format(date)} ${timeFormat.format(date)}")
-            .setPositiveButton("Okay"){_,_ ->}
-            .show()
+//    private fun createNotificationChannel() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            // Create the NotificationChannel.
+//            val name = getString(R.string.channel_name)
+//            val descriptionText = getString(R.string.channel_description)
+//            val importance = NotificationManager.IMPORTANCE_DEFAULT
+//            val mChannel = NotificationChannel(CHANNEL_ID, name, importance)
+//            mChannel.description = descriptionText
+//            // Register the channel with the system. You can't change the importance
+//            // or other notification behaviors after this.
+//            val notificationManager: NotificationManager = getSystemService(NotificationManager::class.java)
+//            notificationManager.createNotificationChannel(mChannel)
+//        }
+//    }
+    private fun takeTime(hour: Int, minute: Int, day: Int, month: Int, year: Int) {
+        calendar = Calendar.getInstance()
+        calendar.timeInMillis = System.currentTimeMillis()
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        // if alarm time has already passed, increment day by 1
+        if (calendar.timeInMillis <= System.currentTimeMillis()) {
+            calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 1);
+        }
     }
 }

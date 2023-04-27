@@ -29,4 +29,7 @@ interface PetDao {
             "pet_species = :species WHERE id = :id")
     fun updatePet(name: String, img: String, birth: String, species: String, id: Int)
 
+    @Query("DELETE FROM pet_table WHERE id = :id")
+    fun delById(id: Int)
+
 }
